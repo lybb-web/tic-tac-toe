@@ -17,6 +17,20 @@ const TicTacToeGame = (function(){
 
         function makeGameBoard()
         {
+            let gameGrid = document.createElement("div");
+            for (let i = 0; i < gameboard.length; i++)
+            {
+                var gameRow = document.createElement("div");
+                for (let j = 0; j < gameboard[i].length; j++)
+                {
+                    var gameCell = document.createElement("div");
+                    gameCell.textContent = gameboard[i][j];
+                    gameRow.appendChild(gameCell);
+
+                }
+                gameGrid.appendChild(gameRow);
+            }
+            body.appendChild(gameGrid);
             console.log(gameboard);
         }
     };
