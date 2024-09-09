@@ -1,0 +1,39 @@
+#game-grid {
+    display: grid;
+    grid-template-rows: repeat(3, 100px);
+    font-size: 32px;
+}
+
+.game-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
+}
+
+.game-cell
+{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.game-row > div {
+    border: 2px solid black;
+}
+
+.game-cell:first-child{
+    border-left: none;
+}
+
+.game-cell:nth-child(3n)
+{
+    border-right: none;
+}
+
+#game-row-1 > div {
+    border-top: none;
+}
+
+#game-row-3 > div {
+    border-bottom: none;
+}
