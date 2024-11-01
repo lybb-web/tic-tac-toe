@@ -3,11 +3,22 @@ const TicTacToeGame = (function(){
     var score = 0;
     var body  = document.querySelector("body");
     var gameboard = [[0,0,0], [0,0,0], [0,0,0]];
+    // function Player(name) {
+    //     const marker = "x";
+    //     return {name, marker};
+    // }
+
+    function Player(name)
+    {
+        this.name = name;
+    }
+    
     const startGame = () => {
         
         console.log("Hello World!");
         populatePage();
         makeGameBoard();
+        setPlayers();
         function populatePage()
         {
             var title = document.createElement("h1");
@@ -38,6 +49,28 @@ const TicTacToeGame = (function(){
             body.appendChild(gameGrid);
             console.log(gameboard);
         }
+        function setPlayers()
+        {
+            let number = 0;
+            function createPlayer(name)
+            {
+                number += 1;
+                return {name, number};
+            }
+            playerOne = createPlayer("p1");
+            playerTwo = createPlayer("p2");
+            players = [playerOne, playerTwo];
+            console.log(playerOne);
+            for (let i = 0; i < number; i ++)
+            {
+                var playerDiv = document.createElement("div");
+                playerDiv.id = "player-" + players[i].number;
+                playerDiv.textContent = players[i].name;
+                body.insertBefore(playerDiv, body.firstChild);
+            }
+            console.log(playerTwo);
+        }
+        
     };
 
     const getScore = () => {
