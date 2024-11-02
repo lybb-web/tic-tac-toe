@@ -3,10 +3,6 @@ const TicTacToeGame = (function(){
     var score = 0;
     var body  = document.querySelector("body");
     var gameboard = [[0,0,0], [0,0,0], [0,0,0]];
-    // function Player(name) {
-    //     const marker = "x";
-    //     return {name, marker};
-    // }
 
     function Player(name)
     {
@@ -57,6 +53,8 @@ const TicTacToeGame = (function(){
                 number += 1;
                 return {name, number};
             }
+            var playerDisplay = document.createElement("div");
+            playerDisplay.id = "player-display";
             playerOne = createPlayer("p1");
             playerTwo = createPlayer("p2");
             players = [playerOne, playerTwo];
@@ -66,9 +64,9 @@ const TicTacToeGame = (function(){
                 var playerDiv = document.createElement("div");
                 playerDiv.id = "player-" + players[i].number;
                 playerDiv.textContent = players[i].name;
-                body.insertBefore(playerDiv, body.firstChild);
+                playerDisplay.appendChild(playerDiv);
             }
-            console.log(playerTwo);
+            body.insertBefore(playerDisplay, body.firstChild);
         }
         
     };
