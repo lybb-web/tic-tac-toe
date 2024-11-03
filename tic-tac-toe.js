@@ -11,10 +11,20 @@ const TicTacToeGame = (function(){
     
     const startGame = () => {
         
-        console.log("Hello World!");
         populatePage();
-        makeGameBoard();
+        const g = makeGameBoard();
         setPlayers();
+        var hasWinner = false;
+        var turn = 1;
+        while (!hasWinner)
+        {
+            if (turn > 0)
+            {
+
+            }
+            hasWinner = true;
+        }
+
         function populatePage()
         {
             var title = document.createElement("h1");
@@ -44,6 +54,7 @@ const TicTacToeGame = (function(){
             }
             body.appendChild(gameGrid);
             console.log(gameboard);
+            return gameGrid;
         }
         function setPlayers()
         {
@@ -79,13 +90,24 @@ const TicTacToeGame = (function(){
             }
             body.insertBefore(playerDisplay, body.firstChild);
         }
-        
+
+        g.addEventListener("click", (e) =>
+        {
+            let target = e.target;
+            if (target.classList.hasOwnProperty('game-cell'))
+            {
+                console.log(target.textContent);
+            }
+            target.textContent = turn > 0 ? "O" : "X";
+        })  
     };
 
     const getScore = () => {
         score++;
         console.log(score);
     }
+
+    
     
 
     return {
