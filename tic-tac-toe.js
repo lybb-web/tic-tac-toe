@@ -16,14 +16,14 @@ const TicTacToeGame = (function(){
         setPlayers();
         var hasWinner = false;
         var turn = 1;
-        while (!hasWinner)
-        {
-            if (turn > 0)
-            {
+        // while (!hasWinner)
+        // {
+        //     if (turn > 0)
+        //     {
 
-            }
-            hasWinner = true;
-        }
+        //     }
+        //     hasWinner = true;
+        // }
 
         function populatePage()
         {
@@ -91,6 +91,83 @@ const TicTacToeGame = (function(){
             body.insertBefore(playerDisplay, body.firstChild);
         }
 
+        function updateGameboard(n, m)
+        {
+            var cellNumber = n - '0' - 1;
+            gameboard[Math.floor(cellNumber / 3)][cellNumber % 3] = m;
+            if (checkValidWin(m))
+            {
+            }
+
+        }
+
+        function checkValidWin(m)
+        {
+            function checkRows()
+            {
+                for (let i = 0; i < 3; i ++)
+                {
+                    var count = 0;
+                    for (let j = 0; j < 3; j++)
+                    {
+                        // console.log(gameboard[i][j]);
+                        // console.log(m);
+                        if (gameboard[i][j] == m)
+                        {
+                            count += 1;
+                        }
+                    }
+                    if (count == 3)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            function checkColumns()
+            {
+                for (let i = 0; i < 3; i++)
+                {
+                    var count = 0;
+                    for (let j = 0; j < 3; j++)
+                    {
+                        if (gameboard[j][i] == m)
+                        {
+                            count+= 1;
+                        }
+                    }
+                    if (count == 3)
+                    {
+                        return true;
+                    }
+                }
+                return false
+            }
+            function checkDiagonals()
+            {
+                var count = 0;
+                for (let i = 0; i < 3; i++)
+                {
+                    
+                    if (gameboard[i][i] == m)
+                    {
+                        count+= 1;
+                    }
+                    
+                }
+                if (count == 3)
+                    {
+                        return true;
+                    }
+                if (gameboard[2][0] == gameboard[1][1] && gameboard[2][0] == gameboard[0][2] && gameboard[2][0] == m)
+                {
+                    return true;
+                }
+                return false
+            }
+            return checkRows() || checkColumns()|| checkDiagonals() ? true : false;
+        }
+
         g.addEventListener("click", (e) =>
         {
             let target = e.target;
@@ -99,6 +176,8 @@ const TicTacToeGame = (function(){
                 console.log(target.textContent);
             }
             target.textContent = turn > 0 ? "O" : "X";
+            updateGameboard(target.id[target.id.length -1], target.textContent)
+            turn *= -1;
         })  
     };
 
