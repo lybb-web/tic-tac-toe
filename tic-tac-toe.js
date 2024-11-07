@@ -12,7 +12,8 @@ const TicTacToeGame = (function(){
     const startGame = () => {
         
         populatePage();
-        const g = makeGameBoard();
+        var g = makeGameBoard();
+        bindGameboardListener();
         setPlayers();
         var hasWinner = false;
         var turn = 1;
@@ -108,6 +109,20 @@ const TicTacToeGame = (function(){
                     console.log("Player 2 Wins!");
                     playerTwo.score += 1;
                 }
+                var resetButton = document.createElement("button");
+                resetButton.textContent = "Reset Game";
+                resetButton.id = "reset-button";
+                body.appendChild(resetButton);
+
+
+                resetButton.addEventListener("click", (e) => 
+                {
+                    document.getElementById("reset-button").remove();
+                    document.getElementById("game-grid").remove();
+                    gameboard = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+                    g = makeGameBoard();
+                    bindGameboardListener();
+                })
             }
 
         }
@@ -178,23 +193,30 @@ const TicTacToeGame = (function(){
             return checkRows() || checkColumns()|| checkDiagonals() ? true : false;
         }
 
-        g.addEventListener("click", (e) =>
+        function bindGameboardListener()
         {
-            
-            let target = e.target;
-            let currentMark = turn > 0 ? "O" : "X";
-            if (target.classList.hasOwnProperty('game-cell'))
+
+        
+            g.addEventListener("click", (e) =>
             {
-                console.log(target.textContent);
-            }
-            if (target.textContent != "O" && target.textContent != "X")
-            {
-                target.textContent = currentMark;
-                updateGameboard(target.id[target.id.length -1], target.textContent)
-                turn *= -1;
-            }
-            
-        })  
+                
+                let target = e.target;
+                let currentMark = turn > 0 ? "O" : "X";
+                if (target.classList.hasOwnProperty('game-cell'))
+                {
+                    console.log(target.textContent);
+                }
+                if (target.textContent != "O" && target.textContent != "X")
+                {
+                    target.textContent = currentMark;
+                    updateGameboard(target.id[target.id.length -1], target.textContent)
+                    turn *= -1;
+                }
+                
+            })
+        }
+        
+        
     };
 
     const getScore = () => {
