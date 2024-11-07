@@ -98,16 +98,21 @@ const TicTacToeGame = (function(){
             gameboard[Math.floor(cellNumber / 3)][cellNumber % 3] = m;
             if (checkValidWin(m))
             {
-                // m == "O" ? console.log("Player 1 Wins!") : console.log("Player 2 Wins!");
+                var winnerPlayerScoreDiv;
                 if (m == "O")
                 {
+                    
                     console.log("Player 1 Wins!");
                     playerOne.score += 1;
+                    winnerPlayerScoreDiv = document.getElementById("player-1-score");
+                    winnerPlayerScoreDiv.textContent = playerOne.score;
                 }
                 else 
                 {
                     console.log("Player 2 Wins!");
                     playerTwo.score += 1;
+                    winnerPlayerScoreDiv = document.getElementById("player-2-score");
+                    winnerPlayerScoreDiv.textContent = playerTwo.score;
                 }
                 var resetButton = document.createElement("button");
                 resetButton.textContent = "Reset Game";
