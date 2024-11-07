@@ -97,6 +97,17 @@ const TicTacToeGame = (function(){
             gameboard[Math.floor(cellNumber / 3)][cellNumber % 3] = m;
             if (checkValidWin(m))
             {
+                // m == "O" ? console.log("Player 1 Wins!") : console.log("Player 2 Wins!");
+                if (m == "O")
+                {
+                    console.log("Player 1 Wins!");
+                    playerOne.score += 1;
+                }
+                else 
+                {
+                    console.log("Player 2 Wins!");
+                    playerTwo.score += 1;
+                }
             }
 
         }
@@ -110,8 +121,7 @@ const TicTacToeGame = (function(){
                     var count = 0;
                     for (let j = 0; j < 3; j++)
                     {
-                        // console.log(gameboard[i][j]);
-                        // console.log(m);
+                        
                         if (gameboard[i][j] == m)
                         {
                             count += 1;
@@ -170,14 +180,20 @@ const TicTacToeGame = (function(){
 
         g.addEventListener("click", (e) =>
         {
+            
             let target = e.target;
+            let currentMark = turn > 0 ? "O" : "X";
             if (target.classList.hasOwnProperty('game-cell'))
             {
                 console.log(target.textContent);
             }
-            target.textContent = turn > 0 ? "O" : "X";
-            updateGameboard(target.id[target.id.length -1], target.textContent)
-            turn *= -1;
+            if (target.textContent != "O" && target.textContent != "X")
+            {
+                target.textContent = currentMark;
+                updateGameboard(target.id[target.id.length -1], target.textContent)
+                turn *= -1;
+            }
+            
         })  
     };
 
