@@ -204,18 +204,22 @@ const TicTacToeGame = (function(){
         
             g.addEventListener("click", (e) =>
             {
+                if (!document.getElementById("reset-button"))
+                {
+
                 
-                let target = e.target;
-                let currentMark = turn > 0 ? "O" : "X";
-                if (target.classList.hasOwnProperty('game-cell'))
-                {
-                    console.log(target.textContent);
-                }
-                if (target.textContent != "O" && target.textContent != "X")
-                {
-                    target.textContent = currentMark;
-                    updateGameboard(target.id[target.id.length -1], target.textContent)
-                    turn *= -1;
+                    let target = e.target;
+                    let currentMark = turn > 0 ? "O" : "X";
+                    if (target.classList.hasOwnProperty('game-cell'))
+                    {
+                        console.log(target.textContent);
+                    }
+                    if (target.textContent != "O" && target.textContent != "X")
+                    {
+                        target.textContent = currentMark;
+                        updateGameboard(target.id[target.id.length -1], target.textContent)
+                        turn *= -1;
+                    }
                 }
                 
             })
