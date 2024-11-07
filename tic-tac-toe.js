@@ -114,13 +114,35 @@ const TicTacToeGame = (function(){
                     winnerPlayerScoreDiv = document.getElementById("player-2-score");
                     winnerPlayerScoreDiv.textContent = playerTwo.score;
                 }
-                var resetButton = document.createElement("button");
-                resetButton.textContent = "Reset Game";
-                resetButton.id = "reset-button";
-                body.appendChild(resetButton);
+                if (playerOne.score ==  3 || playerTwo.score == 3)
+                {
+                    m == "O" ? console.log("The winner is Player 1!") : console.log("The winner is Player 2!");
+                    var restartGame = document.createElement("button");
+                    restartGame.textContent = "Reset Scores";
+                    restartGame.id = "restart-button";
+                    body.appendChild(restartGame);
 
 
-                resetButton.addEventListener("click", (e) => 
+                    restartGame.addEventListener("click", (e) => {
+                        document.getElementById("restart-button").remove();
+                        document.getElementById("game-grid").remove();
+                        gameboard = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]; 
+                        g = makeGameBoard();
+                        bindGameboardListener();
+                        playerOne.score = 0;
+                        playerTwo.score = 0;
+                        document.getElementById("player-1-score").textContent = playerOne.score;
+                        document.getElementById("player-2-score").textContent = playerTwo.score;
+                    })
+                }
+                else
+                {
+                    var resetButton = document.createElement("button");
+                    resetButton.textContent = "Reset Game";
+                    resetButton.id = "reset-button";
+                    body.appendChild(resetButton);
+
+                    resetButton.addEventListener("click", (e) => 
                 {
                     document.getElementById("reset-button").remove();
                     document.getElementById("game-grid").remove();
@@ -128,6 +150,13 @@ const TicTacToeGame = (function(){
                     g = makeGameBoard();
                     bindGameboardListener();
                 })
+                }
+                
+
+
+                
+
+                
             }
 
         }
