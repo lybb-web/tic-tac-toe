@@ -2,7 +2,7 @@ const TicTacToeGame = (function(){
 
     var score = 0;
     var body  = document.querySelector("body");
-    var gameboard = [[0,0,0], [0,0,0], [0,0,0]];
+    var gameboard = [[" "," "," "], [" "," "," "], [" "," "," "]];
 
     // function Player(name)
     // {
@@ -126,7 +126,7 @@ const TicTacToeGame = (function(){
                     restartGame.addEventListener("click", (e) => {
                         document.getElementById("restart-button").remove();
                         document.getElementById("game-grid").remove();
-                        gameboard = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]; 
+                        gameboard = [[" "," "," "], [" "," "," "], [" "," "," "]]; 
                         g = makeGameBoard();
                         bindGameboardListener();
                         playerOne.score = 0;
@@ -146,7 +146,7 @@ const TicTacToeGame = (function(){
                 {
                     document.getElementById("reset-button").remove();
                     document.getElementById("game-grid").remove();
-                    gameboard = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+                    gameboard = [[" "," "," "], [" "," "," "], [" "," "," "]];
                     g = makeGameBoard();
                     bindGameboardListener();
                 })
