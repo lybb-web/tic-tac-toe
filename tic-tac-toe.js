@@ -15,8 +15,8 @@ const TicTacToeGame = (function(){
         var g = makeGameBoard();
         bindGameboardListener();
         setPlayers();
-        var hasWinner = false;
         var turn = 1;
+        var turnCount = 0;
         // while (!hasWinner)
         // {
         //     if (turn > 0)
@@ -36,6 +36,7 @@ const TicTacToeGame = (function(){
         function makeGameBoard()
         {
             let gameGrid = document.createElement("div");
+            turnCount = 0;
             gameGrid.id = "game-grid";
             for (let i = 0; i < gameboard.length; i++)
             {
@@ -158,6 +159,14 @@ const TicTacToeGame = (function(){
 
                 
             }
+            else if (turnCount == 9)
+            {
+                console.log("It's a tie!");
+                var resetButton = document.createElement("button");
+                resetButton.textContent = "Reset Game";
+                resetButton.id = "reset-button";
+                body.appendChild(resetButton);
+            }
 
         }
 
@@ -245,9 +254,12 @@ const TicTacToeGame = (function(){
                     }
                     if (target.textContent != "O" && target.textContent != "X")
                     {
+                        
                         target.textContent = currentMark;
+                        turnCount += 1;
                         updateGameboard(target.id[target.id.length -1], target.textContent)
                         turn *= -1;
+                        
                     }
                 }
                 
